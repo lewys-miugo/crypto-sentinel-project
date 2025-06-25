@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CryptoSentinel</title>
+  <link rel="stylesheet" href="assets/style.css"/>
+</head>
+<body class="light">
+  <header>
+    <h1>CryptoSentinel</h1>
+    <div class="controls">
+      <input type="text" id="searchInput" placeholder="Search coins..."/>
+      <select id="filterRisk">
+        <option value="all">All</option>
+        <option value="stable">Stable</option>
+        <option value="moderate">Moderate</option>
+        <option value="high">High Risk</option>
+      </select>
+      <button id="themeToggle">Toggle Dark Mode</button>
+      <button id="refreshBtn">Refresh</button>
+    </div>
+  </header>
+
+  <main>
+    <section id="coinList" class="coin-list">
+      <!-- Coins will go here -->
+    </section>
+  </main>
+
+  <div id="modal" class="modal hidden">
+    <div class="modal-content">
+      <span id="modalClose" class="close">&times;</span>
+      <div id="modalBody">
+        <!-- Dynamic coin details will go here -->
+      </div>
+    </div>
+  </div>
+
+  <script src="assets/index.js"></script>
+</body>
+</html>
