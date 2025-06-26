@@ -61,7 +61,7 @@ Visual badges and border colors indicate risk at a glance.
 
 3. start json-server
     ```
-    json-server db.json 
+    json-server --watch db.json 
     ```
 
 4. Launch index.html in the browser
