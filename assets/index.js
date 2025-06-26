@@ -59,6 +59,23 @@ function renderCoins(coins) {
 }
 
 // Show modal with coin details
+function showCoinDetails(coin, risk) {
+    modalBody.innerHTML = `
+      <h2>${coin.name} (${coin.symbol})</h2>
+      <p><strong>Rank:</strong> ${coin.rank}</p>
+      <p><strong>Price (USD):</strong> $${Number(coin.price_usd).toLocaleString()}</p>
+      <p><strong>Price (BTC):</strong> ${coin.price_btc}</p>
+      <p><strong>Market Cap:</strong> $${Number(coin.market_cap_usd).toLocaleString()}</p>
+      <p><strong>24h Change:</strong> ${coin.percent_change_24h}%</p>
+      <p><strong>7d Change:</strong> ${coin.percent_change_7d}%</p>
+      <p><strong>Circulating Supply:</strong> ${Number(coin.csupply).toLocaleString()}</p>
+      <p><strong>Total Supply:</strong> ${coin.tsupply}</p>
+      <p><strong>Max Supply:</strong> ${coin.msupply || 'N/A'}</p>
+      <p><strong>Volume (24h):</strong> $${Number(coin.volume24).toLocaleString()}</p>
+      <p><strong>Risk Level:</strong> <span class="risk-badge ${risk}">${risk.toUpperCase()}</span></p>
+    `;
+    modal.classList.remove("hidden");
+  }
 
 // Modal close
 
