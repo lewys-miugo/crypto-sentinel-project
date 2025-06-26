@@ -7,6 +7,8 @@ const filterRisk = document.getElementById("filterRisk");
 const modal = document.getElementById("modal");
 const modalBody = document.getElementById("modalBody");
 const modalClose = document.getElementById("modalClose");
+const JSON_SERVER_URL = "http://localhost:3000/favorites";
+
 
 let allCoins = [];
 
@@ -38,26 +40,49 @@ function getRiskLevel(coin) {
 }
 
 // Render all coins
-function renderCoins(coins) {
-  coinList.innerHTML = "";
-
-  coins.forEach((coin) => {
-    const risk = getRiskLevel(coin);
-
-    const card = document.createElement("div");
-    card.className = `coin-card ${risk}`;
-    card.innerHTML = `
-      <h3>${coin.name} (${coin.symbol})</h3>
-      <p>Price: $${Number(coin.price_usd).toLocaleString()}</p>
-      <p>24h: ${coin.percent_change_24h}%</p>
-      <p>7d: ${coin.percent_change_7d}%</p>
-      <span class="risk-badge ${risk}">${risk[0].toUpperCase() + risk.slice(1)} Risk</span>
-    `;
-
-    card.addEventListener("click", () => showCoinDetails(coin, risk));
-    coinList.appendChild(card);
-  });
-}
+async function renderCoins(coins) {
+    coinList.innerHTML = "";
+    const favoriteIds = await getFavoriteIds();
+  
+    coins.forEach((coin) => {
+      const risk = getRiskLevel(coin);
+      const isFavorited = favoriteIds.includes(coin.id.toString());
+  
+      const card = document.createElement("div");
+      card.className = `coin-card ${risk}`;
+      card.innerHTML = `
+        <div class="coin-header">
+          <h3>${coin.name} (${coin.symbol})</h3>
+          <span class="star ${isFavorited ? "favorited" : ""}" data-id="${coin.id}">&#9733;</span>
+        </div>
+        <p>Price: $${Number(coin.price_usd).toLocaleString()}</p>
+        <p>24h: ${coin.percent_change_24h}%</p>
+        <p>7d: ${coin.percent_change_7d}%</p>
+        <span class="risk-badge ${risk}">${risk[0].toUpperCase() + risk.slice(1)} Risk</span>
+      `;
+  
+      // Modal on click
+      card.addEventListener("click", (e) => {
+        if (!e.target.classList.contains("star")) {
+          showCoinDetails(coin, risk);
+        }
+      });
+  
+      // Favorite toggle
+      card.querySelector(".star").addEventListener("click", async (e) => {
+        e.stopPropagation(); // prevent modal
+        if (isFavorited) {
+          await removeFavorite(coin.id);
+        } else {
+          await addFavorite(coin.id);
+        }
+        fetchAndRenderCoins();
+      });
+  
+      coinList.appendChild(card);
+    });
+  }
+  
 
 // Show modal with coin details
 function showCoinDetails(coin, risk) {
@@ -89,9 +114,34 @@ modalClose.addEventListener("click", () => {
     }
   });
 
+// Fetch favorites
+async function getFavoriteIds() {
+const res = await fetch(JSON_SERVER_URL);
+const data = await res.json();
+return data.map((item) => item.id.toString());
+}
 
+// Add favorites
+async function addFavorite(coinId) {
+await fetch(JSON_SERVER_URL, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ id: coinId.toString() }),
+});
+}
+
+// Remove favorites
+async function removeFavorite(coinId) {
+const res = await fetch(`${JSON_SERVER_URL}?id=${coinId}`);
+const data = await res.json();
+if (data.length > 0) {
+    await fetch(`${JSON_SERVER_URL}/${data[0].id}`, {
+    method: "DELETE",
+    });
+}
+}
+  
 // Search functionality
-
 searchInput.addEventListener("input", (e) => {
     const term = e.target.value.toLowerCase();
     const filtered = allCoins.filter((coin) =>
@@ -100,22 +150,29 @@ searchInput.addEventListener("input", (e) => {
     renderCoins(filtered);
   });
 
-// Filter by risk
-filterRisk.addEventListener("change", (e) => {
+// Filter by risk & favorites
+filterRisk.addEventListener("change", async (e) => {
     const risk = e.target.value;
   
     if (risk === "all") {
       renderCoins(allCoins);
+    } else if (risk === "favorites") {
+      const favIds = await getFavoriteIds();
+      const filtered = allCoins.filter((coin) => favIds.includes(coin.id.toString()));
+      renderCoins(filtered);
     } else {
       const filtered = allCoins.filter((coin) => getRiskLevel(coin) === risk);
       renderCoins(filtered);
     }
   });
+  
+
 // Toggle theme
 themeToggle.addEventListener("click", () => {
     document.body.classList.toggle("dark");
     document.body.classList.toggle("light");
   });
+
 // Refresh data
 refreshBtn.addEventListener("click", () => {
   fetchAndRenderCoins();
