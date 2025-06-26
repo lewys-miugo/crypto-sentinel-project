@@ -1,5 +1,6 @@
 const API_URL = "https://api.coinlore.net/api/tickers/";
 const coinList = document.getElementById("coinList");
+const searchInput = document.getElementById("searchInput");
 const refreshBtn = document.getElementById("refreshBtn");
 const themeToggle = document.getElementById("themeToggle");
 const filterRisk = document.getElementById("filterRisk");
@@ -53,7 +54,7 @@ function renderCoins(coins) {
       <span class="risk-badge ${risk}">${risk[0].toUpperCase() + risk.slice(1)} Risk</span>
     `;
 
-    
+    card.addEventListener("click", () => showCoinDetails(coin, risk));
     coinList.appendChild(card);
   });
 }
