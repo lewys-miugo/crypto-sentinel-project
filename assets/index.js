@@ -78,11 +78,26 @@ function showCoinDetails(coin, risk) {
   }
 
 // Modal close
+modalClose.addEventListener("click", () => {
+    modal.classList.add("hidden");
+  });
+  
+  window.addEventListener("click", (e) => {
+    if (e.target === modal) {
+      modal.classList.add("hidden");
+    }
+  });
 
 
 // Search functionality
 
-
+searchInput.addEventListener("input", (e) => {
+    const term = e.target.value.toLowerCase();
+    const filtered = allCoins.filter((coin) =>
+      coin.name.toLowerCase().includes(term) || coin.symbol.toLowerCase().includes(term)
+    );
+    renderCoins(filtered);
+  });
 
 // Filter by risk
 filterRisk.addEventListener("change", (e) => {
