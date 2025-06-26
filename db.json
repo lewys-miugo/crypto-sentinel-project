@@ -1,21 +1,4 @@
-{"data": [
-    {
-      "id": "90",
-      "symbol": "BTC",
-      "name": "Bitcoin",
-      "nameid": "bitcoin",
-      "rank": 1,
-      "price_usd": "106376.40",
-      "percent_change_24h": "0.83",
-      "percent_change_1h": "0.22",
-      "percent_change_7d": "2.45",
-      "price_btc": "1.00",
-      "market_cap_usd": "2113335018093.70",
-      "volume24": 27597907196.7024,
-      "volume24a": 41993111200.5716,
-      "csupply": "19866577.00",
-      "tsupply": "19866577",
-      "msupply": "21000000"
-    }
-]
+{
+    "favorites": []
 }
+  
