@@ -1,6 +1,7 @@
 const API_URL = "https://api.coinlore.net/api/tickers/";
 const coinList = document.getElementById("coinList");
 const refreshBtn = document.getElementById("refreshBtn");
+const themeToggle = document.getElementById("themeToggle");
 const modal = document.getElementById("modal");
 const modalBody = document.getElementById("modalBody");
 const modalClose = document.getElementById("modalClose");
@@ -67,7 +68,11 @@ function renderCoins(coins) {
 
 // Filter by risk
 // Toggle theme
-
+// Toggle theme
+themeToggle.addEventListener("click", () => {
+    document.body.classList.toggle("dark");
+    document.body.classList.toggle("light");
+  });
 // Refresh data
 refreshBtn.addEventListener("click", () => {
   fetchAndRenderCoins();
