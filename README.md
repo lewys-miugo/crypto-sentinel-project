@@ -9,7 +9,8 @@ CryptoSentinel is a **single-page web application (SPA)** that helps users **mon
 -  **Live Crypto Dashboard**: Displays the top 50 cryptocurrencies with live data (price, % change, market cap, etc.).
 -  **Risk Classification**: Classifies each coin as Stable, Moderate, or High Risk based on 24h and 7d percentage changes.
 -  **Search Functionality**: Quickly find a cryptocurrency by name or symbol.
--  **Filter by Risk Level**: Filter the coin list based on risk classification.
+-  **Favorite Functionality**: One can favorite and remove from favorite his favorites coins.
+-  **Filter by Risk Level & Favorites**: Filter the coin list based on risk classification.
 -  **Dark/Light Theme Toggle**: Switch between light and dark UI modes.
 -  **Coin Detail Modal**: Click a coin card to view more in-depth statistics.
 -  **Manual Data Refresh**: Fetches fresh live data at any time.
