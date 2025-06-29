@@ -4,6 +4,9 @@ CryptoSentinel is a **single-page web application (SPA)** that helps users **mon
 
 ---
 
+## Live Demo
+Click [here](https://lewys-crypto-sentinel.netlify.app/) for the live link.
+
 ## Features
 
 -  **Live Crypto Dashboard**: Displays the top 50 cryptocurrencies with live data (price, % change, market cap, etc.).
@@ -73,6 +76,3 @@ Email: lewiswambugu01@gmail.com
 
 ## License
 This project is open-source and available under the [MIT License](https://opensource.org/license/mit).
-
-## Live Demo
-Coming soon:

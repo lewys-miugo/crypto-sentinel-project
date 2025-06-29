@@ -2,6 +2,7 @@ const API_URL = "https://api.coinlore.net/api/tickers/";
 const coinList = document.getElementById("coinList");
 const searchInput = document.getElementById("searchInput");
 const refreshBtn = document.getElementById("refreshBtn");
+const githubBtn = document.getElementById("githubBtn");
 const themeToggle = document.getElementById("themeToggle");
 const filterRisk = document.getElementById("filterRisk");
 const modal = document.getElementById("modal");
@@ -179,6 +180,10 @@ themeToggle.addEventListener("click", () => {
 // Refresh data
 refreshBtn.addEventListener("click", () => {
   fetchAndRenderCoins();
+});
+
+githubBtn.addEventListener("click", () => {
+  window.open("https://github.com/lewys-miugo/crypto-sentinel-project","_blank");
 });
 
 // Initial load
