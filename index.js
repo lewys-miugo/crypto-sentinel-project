@@ -7,7 +7,7 @@ const filterRisk = document.getElementById("filterRisk");
 const modal = document.getElementById("modal");
 const modalBody = document.getElementById("modalBody");
 const modalClose = document.getElementById("modalClose");
-const JSON_SERVER_URL = "https://json-server-crypto-favorites.herokuapp.com/favorites"; 
+const JSON_SERVER_URL = "https://crypto-sentinel-project-1.onrender.com/favorites"; 
 // const JSON_SERVER_URL = "/api/favorites";
 
 
