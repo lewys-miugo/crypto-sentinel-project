@@ -7,8 +7,8 @@ const filterRisk = document.getElementById("filterRisk");
 const modal = document.getElementById("modal");
 const modalBody = document.getElementById("modalBody");
 const modalClose = document.getElementById("modalClose");
-// const JSON_SERVER_URL = "http://localhost:3000/favorites";
-const JSON_SERVER_URL = "/api/favorites";
+const JSON_SERVER_URL = "https://json-server-crypto-favorites.herokuapp.com/favorites"; 
+// const JSON_SERVER_URL = "/api/favorites";
 
 
 
