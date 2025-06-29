@@ -1,0 +1,15 @@
+{
+    "name": "Crypto-Sentinel",
+    "version": "1.0.0",
+    "description": "A simple crypto monitoring app",
+    "main": "index.js",
+    "scripts": {
+      "start": "json-server --watch db.json --port $PORT --host 0.0.0.0"
+  
+    },
+    "dependencies": {
+      "json-server": "^0.17.3"
+    },
+    "author": "Lewis Wambugu",
+    "license": "MIT"
+  }
